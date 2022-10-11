@@ -3,11 +3,8 @@ import LogIn from './LogIn';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 class SignUp extends React.Component {
     render() {
@@ -34,15 +31,8 @@ class SignUp extends React.Component {
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
-                        <Router>
-                            <Routes>
-                                <Route
-                                    exact path="/LogIn"
-                                    element={<LogIn />}
-                                >
-                                </Route>
-                            </Routes>
-                        </Router>
+                        <Link to="/" className="link" style={{ color: "black" }} >Log In</Link>
+                        
                     </Form>
                 </Container>
             </>
