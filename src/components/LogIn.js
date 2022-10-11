@@ -1,14 +1,11 @@
 import React from 'react';
-import SignUp from './SignUp';
-import ForgotPassword from './ForgotPassword';
+// import SignUp from './SignUp';
+// import ForgotPassword from './ForgotPassword';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-} from "react-router-dom";
+import {Link} from 'react-router-dom';
+
 
 class LogIn extends React.Component {
     render() {
@@ -35,20 +32,7 @@ class LogIn extends React.Component {
                         <Button variant="secondary" type="submit">
                             Sign In With Google
                         </Button>
-                        <Router>
-                            <Routes>
-                                <Route
-                                    exact path="/SignUp"
-                                    element={<SignUp />}
-                                >
-                                </Route>
-                                <Route
-                                    exact path="/ForgotPassword"
-                                    element={<ForgotPassword />}
-                                >
-                                </Route>
-                            </Routes>
-                        </Router>
+                        <Link to="/signup" className="link" style={{ color: "black" }} >Sign Up</Link>
                     </Form>
                 </Container>
 
