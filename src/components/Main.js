@@ -1,5 +1,9 @@
 import React from 'react';
 import AboutTeam from './AboutTeam';
+
+import HomePage from './HomePage';
+import LogIn from './LogIn.js'
+
 import SignUp from './SignUp';
 
 class Main extends React.Component {
@@ -9,6 +13,7 @@ class Main extends React.Component {
     return(
       <>
       <SignUp/>
+      <HomePage/>
       <AboutTeam/>
       </>
     )
