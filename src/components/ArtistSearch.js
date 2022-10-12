@@ -14,13 +14,13 @@ class ArtistSearch extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-    showModal: false,
+    	showModal: false,
 			// clickedArtist: {},
 			artists: []
 		}
 	}
 
-setShowModalTrue = () => {
+	setShowModalTrue = () => {
 		this.setState({ showModal: true });
 		console.log('yeah');
 		// const filteredArtist = data.filtered((artist)=>{
@@ -40,6 +40,11 @@ setShowModalTrue = () => {
 		this.setState({artists: artistsData.performers})
 	}
 
+	handleSubmit = (e) => {
+		this.props.handleFormSubmit(e);
+		this.getArtists();
+	}
+
 	componentDidMount() {
 		this.getArtists();
 	}
@@ -47,7 +52,7 @@ setShowModalTrue = () => {
 	render() {
 		return (
 			<>
-				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
+				<Header handleFormSubmit={this.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
 				<Container>
 					<div className="saved-venue-artist-div">
 						<div className="searched-artists">
