@@ -1,4 +1,7 @@
 import React from 'react';
+import AuthLogIn from './AuthLogIn';
+import AuthLogOut from './AuthLogOut';
+import Profile from './Profile';
 // import SignUp from './SignUp';
 // import ForgotPassword from './ForgotPassword';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +16,9 @@ class LogIn extends React.Component {
             <>
                 <Container>
                     <h1>VenU</h1>
+                    <AuthLogIn />
+                    <AuthLogOut />
+                    <Profile />
                     <Form>
                         <Form.Label>Log In</Form.Label>
                         <Form.Group className="mb-3" controlId="formUserName">
