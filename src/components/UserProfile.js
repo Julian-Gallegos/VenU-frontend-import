@@ -3,22 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Header from './Header.js';
 
 class UserProfile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showModal: false
-            //clickedArtist: {},
-        }
-    }
 
-    setShowModalTrue = () => {
-        this.setState({ showModal: true });
-        //const filtered
-    }
-
-    setShowModalFalse = () => {
-        this.setState({ showModal: false })
-    }
 
 
 
@@ -31,15 +16,13 @@ class UserProfile extends React.Component {
                         <div className="saved-div-container">
                             <h2>Saved Venues</h2>
                             <div className="saved-div" >
-                                <p >Hello world</p>
-
+                        
                             </div>
                         </div>
                         <div className="saved-div-container">
                             <h2>Saved Artists</h2>
                             <div className="saved-div">
                                 <p>Hello world</p>
-
                             </div>
                         </div>
                     </div>

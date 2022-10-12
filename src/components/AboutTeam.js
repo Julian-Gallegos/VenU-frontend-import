@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
-
+import '../App.css';
 
 class AboutTeam extends React.Component {
 	render() {
@@ -13,7 +13,7 @@ class AboutTeam extends React.Component {
 				<Container>
 					<Row>
 						<Col sm={6}> 
-							<Card style={{ width: '18rem' }}>
+							<Card style={{ width: '18rem' }} className='aboutteam-card'>
 								<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 								<Card.Body>
 									<Card.Title>Cianenry Danan</Card.Title>
@@ -22,7 +22,7 @@ class AboutTeam extends React.Component {
 										bulk of the card's content.
 									</Card.Text>
 								</Card.Body>
-								<ListGroup className="list-group-flush">
+								<ListGroup className="list-group-flush" >
 
 									<ListGroup.Item>Favorite Artists:  </ListGroup.Item>
 									<ListGroup.Item>Favorite Venue: </ListGroup.Item>
@@ -34,7 +34,7 @@ class AboutTeam extends React.Component {
 							</Card>
 						</Col>
 						<Col sm={6}>
-							<Card style={{ width: '18rem' }}>
+							<Card style={{ width: '18rem' }} className='aboutteam-card'>
 								<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 								<Card.Body>
 									<Card.Title>Chris Hollis</Card.Title>
@@ -57,7 +57,7 @@ class AboutTeam extends React.Component {
 					</Row>
 					<Row>
 						<Col sm={6}>
-							<Card style={{ width: '18rem' }}>
+							<Card style={{ width: '18rem' }} className='aboutteam-card'>
 								<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 								<Card.Body>
 									<Card.Title>Erik Dodd</Card.Title>
@@ -78,7 +78,7 @@ class AboutTeam extends React.Component {
 							</Card>
 						</Col>
 						<Col sm={6}>
-							<Card style={{ width: '18rem' }}>
+							<Card style={{ width: '18rem' }} className='aboutteam-card'>
 								<Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
 								<Card.Body>
 									<Card.Title>Julian Gallegos</Card.Title>

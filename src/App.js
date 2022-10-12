@@ -1,7 +1,6 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import React from 'react';
 import LogIn from './components/LogIn.js';
 import Footer from './components/Footer.js';
