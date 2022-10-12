@@ -76,3 +76,11 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark{
 main{
   background-color: #F8F5F2;
 }
+
+.aboutteam-card{
+  background-color: blue;
+}
+
+div.container.card:hover{
+	box-shadow: 5px 5px 5px rgba( 0, 0, 0, .2);
+}
