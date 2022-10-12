@@ -4,7 +4,6 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import SearchBar from './SearchBar.js';
 import {Link} from 'react-router-dom';
 
 
@@ -36,7 +35,6 @@ class LogIn extends React.Component {
                         <Link to="/signup" className="link" style={{ color: "black" }} >Sign Up</Link>
                     </Form>
                 </Container>
-                <SearchBar></SearchBar>
             </>
         )
     }

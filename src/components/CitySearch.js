@@ -1,19 +1,20 @@
 import React from 'react';
+import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 
 class CitySearch extends React.Component {
     render() {
         return (
             <>
+                <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
                 <Container>
                     <h2>Search by Location</h2>
                     <div className="search-by-location">
-                        <p>Hello world</p>
+                        <p>{this.props.searchQuery}</p>
                         <p>Hello world</p>
                         <p>Hello world</p>
                         <p>Hello world</p>
@@ -49,7 +50,7 @@ class CitySearch extends React.Component {
                                     <Button variant="primary">Go somewhere</Button>
                                 </Card.Body>
                             </Card>
-                            
+
                             <Card style={{ width: '12rem' }}>
                                 <Card.Img variant="top" src="holder.js/100px180" />
                                 <Card.Body>
@@ -80,47 +81,47 @@ class CitySearch extends React.Component {
                                     <Button variant="primary">Go somewhere</Button>
                                 </Card.Body>
                             </Card>
-                        
-                        <Card style={{ width: '12rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
-                            <Card.Body>
-                                <Card.Title>Venue #1</Card.Title>
-                                <Card.Text>
-                                    Info on Venue #1
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card style={{ width: '12rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
-                            <Card.Body>
-                                <Card.Title>Venue #1</Card.Title>
-                                <Card.Text>
-                                    Info on Venue #1
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card style={{ width: '12rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
-                            <Card.Body>
-                                <Card.Title>Venue #1</Card.Title>
-                                <Card.Text>
-                                    Info on Venue #1
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                        <Card style={{ width: '12rem' }}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
-                            <Card.Body>
-                                <Card.Title>Venue #1</Card.Title>
-                                <Card.Text>
-                                    Info on Venue #1
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
+
+                            <Card style={{ width: '12rem' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Venue #1</Card.Title>
+                                    <Card.Text>
+                                        Info on Venue #1
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '12rem' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Venue #1</Card.Title>
+                                    <Card.Text>
+                                        Info on Venue #1
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '12rem' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Venue #1</Card.Title>
+                                    <Card.Text>
+                                        Info on Venue #1
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{ width: '12rem' }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Venue #1</Card.Title>
+                                    <Card.Text>
+                                        Info on Venue #1
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card>
                         </Row>
                     </Container>
                 </Container>

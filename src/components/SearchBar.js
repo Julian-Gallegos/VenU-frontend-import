@@ -2,16 +2,15 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      formType: "city",
+      formType: "citysearch",
       placeholder: "Search a city for its venue info",
-      searchData: "",
     }
 
   }
@@ -19,28 +18,24 @@ class Searchbar extends React.Component {
   handleSelect = (e) => {
     e.preventDefault();
     if (e.target.value === "city") {
-      this.setState({ placeholder: "Search a city for its venue info", formType: "City Venues" });
+      this.setState({ placeholder: "Search a city for its venue info", formType: "citysearch" });
     } else {
-      this.setState({ placeholder: "Search an artist for their info", formType: "artist" });
+      this.setState({ placeholder: "Search an artist for their info", formType: "artistsearch" });
     }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.formType === "city") {
-      useNavigate('/CitySearch', {
-        state: {
-          searchData: this.state.searchData
-        }
-      });
-    } else {
-      useNavigate('/ArtistSearch', {
-        state: {
-          searchData: this.state.searchData
-        }
-      });
-    }
-  }
+  // handleFormChange(e) {
+  //   e.preventDefault();
+  //   console.log(e);
+  //   //this.setState({formData: e.target.value});
+  //   this.props.handleFormChange(e);
+
+  // }
+
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   this.setState({searchQuery: this.state.formData});
+  // }
 
 
   render() {
@@ -51,7 +46,7 @@ class Searchbar extends React.Component {
           <option value="artist">Artist</option>
         </Form.Select>
 
-        <Form onSubmit={() => this.handleSubmit()}>
+        <Form onSubmit={this.props.handleFormSubmit} onChange={this.props.handleFormChange}>
           <Form.Label></Form.Label>
           <Form.Group className="mb-3" controlId="formSearch">
             <Form.Label>City</Form.Label>
@@ -61,11 +56,9 @@ class Searchbar extends React.Component {
             Submit
           </Button>
         </Form>
-        {/* <Routes>
-          <Route exact path="/">
-            {this.state.searchData.length > 0 ? <Redirect to={{ pathname: "/citysearch", state: { searchData: this.state.searchData } }} /> : <></>}
-          </Route>
-        </Routes> */}
+        
+        {this.props.searchQuery.length > 0 ? <Navigate to={`/${this.state.formType}`} /> : <></>}
+        
 
       </>
     )
