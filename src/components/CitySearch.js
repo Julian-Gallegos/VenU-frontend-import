@@ -69,14 +69,20 @@ class CitySearch extends React.Component {
             this.setState({ errorMessage: error.message });
         }
     }
-        getCoordinates = async (venues) => {
-            const coordinatesArr = [];
-            venues.forEach(v => {
-                const coordinate = [v.location.lat, v.location.lon];
-                coordinatesArr.push(coordinate);
-            })
-            this.setState({ venueCoordinates: coordinatesArr });
-        }
+
+    getCoordinates = async (venues) => {
+        const coordinatesArr = [];
+        venues.forEach(v => {
+            const coordinate = [v.location.lat, v.location.lon];
+            coordinatesArr.push(coordinate);
+        })
+        this.setState({ venueCoordinates: coordinatesArr });
+    }
+
+    handleSubmit = (e) => {
+        this.props.handleFormSubmit(e);
+        this.getVenues();
+    }
 
 
     componentDidMount() {
@@ -86,7 +92,7 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-                <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
+                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
                 <Container>
                     <h2>Search by Location</h2>
                     <CitySearchMap></CitySearchMap>
