@@ -1,12 +1,33 @@
 import React from 'react';
 import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-
+import CityCard from './CityCard.js';
+import CityModal from './CityModal.js';
 
 class CitySearch extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false
+            // clickedArtist: {},
+
+        }
+    }
+
+    setShowModalTrue = () => {
+        this.setState({ showModal: true });
+        console.log('yeah');
+        // const filteredArtist = data.filtered((artist)=>{
+        // 	return artist._id === id;
+        // });
+        // this.setState({clickedArtist: filteredArtist[0]})
+    }
+
+    setShowModalFalse = () => {
+        this.setState({ showModal: false })
+    }
+
     render() {
         return (
             <>
@@ -40,88 +61,8 @@ class CitySearch extends React.Component {
                     <h2> Venue Results </h2>
                     <Container className="venue-results">
                         <Row>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
+                            <CityCard setShowModalTrue={this.setShowModalTrue} />
+                            <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} />
                         </Row>
                     </Container>
                 </Container>
