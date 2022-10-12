@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
 
 class Searchbar extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Searchbar extends React.Component {
     this.state = {
       formType: "city",
       placeholder: "Search a city for its venue info",
+      searchData: "",
     }
 
   }
@@ -25,7 +27,19 @@ class Searchbar extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    if (this.state.formType === "city") {
+      useNavigate('/CitySearch', {
+        state: {
+          searchData: this.state.searchData
+        }
+      });
+    } else {
+      useNavigate('/ArtistSearch', {
+        state: {
+          searchData: this.state.searchData
+        }
+      });
+    }
   }
 
 
@@ -47,6 +61,12 @@ class Searchbar extends React.Component {
             Submit
           </Button>
         </Form>
+        {/* <Routes>
+          <Route exact path="/">
+            {this.state.searchData.length > 0 ? <Redirect to={{ pathname: "/citysearch", state: { searchData: this.state.searchData } }} /> : <></>}
+          </Route>
+        </Routes> */}
+
       </>
     )
   }
