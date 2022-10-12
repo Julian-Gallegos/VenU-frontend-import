@@ -3,7 +3,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
-import Header from './components/Header.js';
 import LogIn from './components/LogIn.js';
 import Footer from './components/Footer.js';
 import SignUp from './components/SignUp.js';
@@ -21,10 +20,27 @@ import {
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchQuery: "",
+      formData: "",
+    }
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    this.setState({searchQuery: this.state.formData});
+  }
+
+  handleFormChange = (e) => {
+    e.preventDefault();
+    this.setState({formData: e.target.value});
+  }
+
   render(){
     return(
       <>
-      <Header/>
       <main>
         <Router>
           <Routes>
@@ -39,17 +55,17 @@ class App extends React.Component {
             </Route>
             <Route
               exact path="/userprofile"
-              element={<UserProfile />}
+              element={<UserProfile handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery}/>}
             >
             </Route>
             <Route
               exact path="/citysearch"
-              element={<CitySearch />}
+              element={<CitySearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery}/>}
             >
             </Route>
             <Route
               exact path="/artistsearch"
-              element={<ArtistSearch />}
+              element={<ArtistSearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery}/>}
             >
             </Route>
             <Route

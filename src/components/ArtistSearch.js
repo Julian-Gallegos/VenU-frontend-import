@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,6 +9,7 @@ class ArtistSearch extends React.Component {
 	render() {
 		return (
 			<>
+				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
 				<Container>
 					<div className="saved-venue-artist-div">
 						<div className="searched-artists">
@@ -152,7 +154,7 @@ class ArtistSearch extends React.Component {
 						</Row>
 					</Container>
 				</Container>
-				
+
 			</>
 		)
 	}

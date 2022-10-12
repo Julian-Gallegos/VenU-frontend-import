@@ -35,7 +35,6 @@ class LogIn extends React.Component {
                         <Link to="/signup" className="link" style={{ color: "black" }} >Sign Up</Link>
                     </Form>
                 </Container>
-
             </>
         )
     }
