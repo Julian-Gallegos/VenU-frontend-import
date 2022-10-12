@@ -15,7 +15,11 @@ class CitySearch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            venues: []
+            venues: [],
+            location: {},
+            cityMap: '',
+            error: false,
+            errorMessage: '',
         }
     }
 
@@ -25,122 +29,138 @@ class CitySearch extends React.Component {
         this.setState({ venues: venuesData.venues });
     }
 
-    componentDidMount() {
-        this.getVenues();
-    }
+    handleMap = async () => {
+        e.preventDefault();
+        try {
+            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_API}&q=${this.state.searchQuery}&format=json`
+            const locationRes = await axios.get(locationAPI);
+            console.log(locationRes.data[0]);
+            this.setState({
+                location: res.data[0],
+                cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_API}&center=${res.data[0].lat},${res.data[0].lon}&zoom=12`,
+            });
+        } catch (error) {
+            console.log(error);
+            this.setState({ error: true });
+            this.setState({ errorMessage: error.message });
+        }
 
-    render() {
-        return (
-            <>
-                <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
-                <Container>
-                    <h2>Search by Location</h2>
-                    <div className="search-by-location">
-                        {this.state.venues.map(venue => { //This should be changed to a map later
-                            return (
-                                <p>
+        componentDidMount() {
+            this.getVenues();
+        }
 
-                                    {venue.name}: {venue.address}
+        render() {
+            return (
+                <>
+                    <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
+                    <Container>
+                        <h2>Search by Location</h2>
+                        <div className="search-by-location">
+                            {this.state.venues.map(venue => { //This should be changed to a map later
+                                return (
+                                    <p>
 
-                                </p>
-                            )
-                        })}
-                        <p>{this.props.searchQuery}</p>
-                    </div>
-                </Container>
-                <Container>
-                    <h2> Venue Results </h2>
-                    <Container className="venue-results">
-                        <Row>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
+                                        {venue.name}: {venue.address}
 
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                            <Card style={{ width: '12rem' }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Venue #1</Card.Title>
-                                    <Card.Text>
-                                        Info on Venue #1
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card>
-                        </Row>
+                                    </p>
+                                )
+                            })}
+                            <p>{this.props.searchQuery}</p>
+                        </div>
                     </Container>
-                </Container>
+                    <Container>
+                        <h2> Venue Results </h2>
+                        <Container className="venue-results">
+                            <Row>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
 
-            </>
-        )
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                                <Card style={{ width: '12rem' }}>
+                                    <Card.Img variant="top" src="holder.js/100px180" />
+                                    <Card.Body>
+                                        <Card.Title>Venue #1</Card.Title>
+                                        <Card.Text>
+                                            Info on Venue #1
+                                        </Card.Text>
+                                        <Button variant="primary">Go somewhere</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Row>
+                        </Container>
+                    </Container>
+
+                </>
+            )
+        }
     }
-}
 
 export default CitySearch;
