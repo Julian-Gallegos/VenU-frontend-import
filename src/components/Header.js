@@ -16,7 +16,7 @@ class Header extends React.Component {
           <Container>
             <Navbar.Brand href="#home">VenU</Navbar.Brand>
 
-            <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
+            <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
 
             <Nav className="me-auto">
               <Nav.Link href="/userprofile">Username</Nav.Link>

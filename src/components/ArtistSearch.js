@@ -9,7 +9,7 @@ class ArtistSearch extends React.Component {
 	render() {
 		return (
 			<>
-				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
+				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
 				<Container>
 					<div className="saved-venue-artist-div">
 						<div className="searched-artists">
