@@ -45,12 +45,12 @@ class CitySearch extends React.Component {
         this.setState({ venues: venuesData.venues });
     }
 
-    handleMap = async () => {
+    handleMap = async (e) => {
         e.preventDefault();
         try {
             const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_API}&q=${this.state.searchQuery}&format=json`
-            const locationRes = await axios.get(locationAPI);
-            console.log(locationRes.data[0]);
+            const res = await axios.get(locationAPI);
+            console.log(res.data[0]);
             this.setState({
                 location: res.data[0],
                 cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_API}&center=${res.data[0].lat},${res.data[0].lon}&zoom=12`,
@@ -60,6 +60,12 @@ class CitySearch extends React.Component {
             this.setState({ error: true });
             this.setState({ errorMessage: error.message });
         }
+    }
+
+    handleSubmit = (e) => {
+        this.props.handleFormSubmit(e);
+        this.getVenues();
+    }
 
     componentDidMount() {
         this.getVenues();
@@ -68,7 +74,7 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-                <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
+                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
                 <Container>
                     <h2>Search by Location</h2>
                     <div className="search-by-location">
