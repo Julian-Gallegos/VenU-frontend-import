@@ -1,13 +1,17 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import Header from './components/Header.js';
 import LogIn from './components/LogIn.js';
 import Footer from './components/Footer.js';
-import SignUp from './components/SignUp';
-import UserProfile from './components/UserProfile';
-import CitySearch from './components/CitySearch';
+import SignUp from './components/SignUp.js';
+import UserProfile from './components/UserProfile.js';
+import CitySearch from './components/CitySearch.js';
+import ArtistSearch from './components/ArtistSearch.js';
+import AboutTeam from './components/AboutTeam.js'
+
 // import LogInRouter from './components/LogInRouter';
 import {
   BrowserRouter as Router,
@@ -20,6 +24,8 @@ class App extends React.Component {
   render(){
     return(
       <>
+      <Header/>
+      <main>
         <Router>
           <Routes>
             <Route
@@ -41,15 +47,19 @@ class App extends React.Component {
               element={<CitySearch />}
             >
             </Route>
-            {/* <Route
+            <Route
+              exact path="/artistsearch"
+              element={<ArtistSearch />}
+            >
+            </Route>
+            <Route
               exact path="/aboutteam"
               element={<AboutTeam />}
             >
-            </Route> */}
+            </Route>
           </Routes>
         </Router>
-      <Header/>
-      {/* <LogInRouter/> */}
+        </main>
       <Footer/>
       </>
     )

@@ -1,5 +1,9 @@
 
 /* USER PROFILE COMPONENT STYLING */
+
+
+
+
 .saved-venue-artist-div {
   display: flex;
   width: 800px;
@@ -12,10 +16,13 @@
 }
 
 .saved-div {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 200px;
   width: 400px;
-  border: 2px solid black;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #FFCE38;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .link-to-favorites {
@@ -45,4 +52,27 @@
 
 div.card {
   width: 500px;
+}
+
+.searched-artists{
+  margin: 50px;
+}
+
+.artist-info{
+  border: 2px solid black;
+  height: 400px;
+  width: 400px;
+  overflow: hidden;
+}
+
+.upcoming-concerts{
+  margin: 50px;
+}
+
+nav.navbar.navbar-expand.navbar-dark.bg-dark{
+  background-color: white;
+}
+
+main{
+  background-color: #F8F5F2;
 }

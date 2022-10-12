@@ -12,10 +12,10 @@ class HomePage extends React.Component {
 	render() {
 		return (
 			<>
-				<Container style={{display: 'flex'}}>
+				<Container style={{display: 'flex', width: '1000px'}}>
 				<div id='search-container'>
 					<div>
-						<InputGroup className="mb-3" style={{width: '1000px'}}>
+						<InputGroup className="mb-3" style={{width: '500px'}}>
 							<DropdownButton
 								variant="outline-secondary"
 								title="Dropdown"
