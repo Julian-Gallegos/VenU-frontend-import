@@ -4,8 +4,30 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
+
+const ARTIST_API = process.env.REACT_APP_ARTIST_API;
+const MUSIC_KEY = process.env.REACT_APP_MUSIC_KEY;
 
 class ArtistSearch extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			artists: []
+		}
+	}
+
+	getArtists = async () => {
+		const res = await axios.get(`${ARTIST_API}/performers?q=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
+		const artistsData = res.data;
+		console.log(artistsData.performers);
+		this.setState({artists: artistsData.performers})
+	}
+
+	componentDidMount() {
+		this.getArtists();
+	}
 	render() {
 		return (
 			<>
@@ -15,51 +37,16 @@ class ArtistSearch extends React.Component {
 						<div className="searched-artists">
 							<h2>Searched Artist</h2>
 							<div className="artist-info">
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
+								{this.state.artists.map(artist => {
+									return (
+										<p>{artist.name}:{artist.image}</p>
+									)
+								})}
 							</div>
 						</div>
 						<div className="upcoming-concerts">
 							<h2>Upcoming Concerts</h2>
 							<div className="artist-info">
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
 							</div>
 						</div>
 					</div>
