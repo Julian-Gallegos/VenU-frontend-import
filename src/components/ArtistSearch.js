@@ -1,65 +1,68 @@
 import React from 'react';
 import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
+import ArtistCard from './ArtistCard.js';
+import ArtistsModal from './ArtistsModal.js';
+import axios from 'axios';
+
+const ARTIST_API = process.env.REACT_APP_ARTIST_API;
+const MUSIC_KEY = process.env.REACT_APP_MUSIC_KEY;
 
 class ArtistSearch extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+    showModal: false,
+			// clickedArtist: {},
+			artists: []
+		}
+	}
+
+setShowModalTrue = () => {
+		this.setState({ showModal: true });
+		console.log('yeah');
+		// const filteredArtist = data.filtered((artist)=>{
+		// 	return artist._id === id;
+		// });
+		// this.setState({clickedArtist: filteredArtist[0]})
+	}
+
+	setShowModalFalse = () => {
+		this.setState({ showModal: false })
+	}
+
+	getArtists = async () => {
+		const res = await axios.get(`${ARTIST_API}/performers?q=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
+		const artistsData = res.data;
+		console.log(artistsData.performers);
+		this.setState({artists: artistsData.performers})
+	}
+
+	componentDidMount() {
+		this.getArtists();
+	}
+
 	render() {
 		return (
 			<>
-				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} />
+				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
 				<Container>
 					<div className="saved-venue-artist-div">
 						<div className="searched-artists">
 							<h2>Searched Artist</h2>
 							<div className="artist-info">
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
+								{this.state.artists.map(artist => {
+									return (
+										<p>{artist.name}:{artist.image}</p>
+									)
+								})}
 							</div>
 						</div>
 						<div className="upcoming-concerts">
 							<h2>Upcoming Concerts</h2>
 							<div className="artist-info">
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
-								<p>Hello world</p>
 							</div>
 						</div>
 					</div>
@@ -69,92 +72,11 @@ class ArtistSearch extends React.Component {
 					<h2> Venue Results </h2>
 					<Container className="venue-results">
 						<Row>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
-							<Card style={{ width: '12rem' }}>
-								<Card.Img variant="top" src="holder.js/100px180" />
-								<Card.Body>
-									<Card.Title>Venue #1</Card.Title>
-									<Card.Text>
-										Info on Venue #1
-									</Card.Text>
-									<Button variant="primary">Go somewhere</Button>
-								</Card.Body>
-							</Card>
+							<ArtistCard setShowModalTrue={this.setShowModalTrue} />
+							<ArtistsModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse}/>
 						</Row>
 					</Container>
 				</Container>
-
 			</>
 		)
 	}

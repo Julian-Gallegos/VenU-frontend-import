@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Card } from 'react-bootstrap';
 
-class ArtistsModal extends React.Component {
+class CityModal extends React.Component {
 	render() {
 		return (
 			<>
@@ -21,12 +21,12 @@ class ArtistsModal extends React.Component {
 				</Modal> */}
 				<Modal show={this.props.showModal} onHide={this.props.setShowModalFalse}>
 					<Modal.Header closeButton>
-						<Modal.Title>Test</Modal.Title>
+						<Modal.Title>Test City</Modal.Title>
 					</Modal.Header>
 
 					<Modal.Body>
 						<Card.Text></Card.Text>
-						Test
+						Test City
 						<Card.Text></Card.Text>
 					</Modal.Body>
 
@@ -38,4 +38,4 @@ class ArtistsModal extends React.Component {
 	}
 }
 
-export default ArtistsModal;
+export default CityModal;

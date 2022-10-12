@@ -56,9 +56,7 @@ class Searchbar extends React.Component {
             Submit
           </Button>
         </Form>
-        
-        {this.props.searchQuery.length > 0 ? <Navigate to={`/${this.state.formType}`} /> : <></>}
-        
+        {this.props.redirectHandler() ? <Navigate to={`/${this.state.formType}`} /> : <></>}
 
       </>
     )
