@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import {Form, Row, Col} from 'react-bootstrap';
 import { Navigate } from "react-router-dom";
 
 class Searchbar extends React.Component {
@@ -41,21 +41,23 @@ class Searchbar extends React.Component {
   render() {
     return (
       <>
-        <Form.Select onChange={this.handleSelect} aria-label="Default select example">
+        <Form.Select onChange={this.handleSelect} aria-label="Default select example" style={{width: '140px'}}>
           <option value="city">City Venues</option>
           <option value="artist">Artist</option>
         </Form.Select>
-
-        <Form onSubmit={this.props.handleFormSubmit} onChange={this.props.handleFormChange}>
+        
+        <Form onSubmit={this.props.handleFormSubmit} onChange={this.props.handleFormChange}style={{display: 'flex', alignItems: 'center'}}>       
           <Form.Label></Form.Label>
-          <Form.Group className="mb-3" controlId="formSearch">
+          <Form.Group className="mb-3" controlId="formSearch" style={{width: '800px', paddingBottom: '16px'}}>
             <Form.Label>City</Form.Label>
             <Form.Control type="search" placeholder={this.state.placeholder} />
           </Form.Group>
+
           <Button variant="primary" type="submit">
             Submit
           </Button>
         </Form>
+      
         {this.props.redirectHandler() ? <Navigate to={`/${this.state.formType}`} /> : <></>}
 
       </>

@@ -92,7 +92,15 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark{
 }
 
 main{
-  background-color: #F8F5F2;
+  background-image: url('https://live.staticflickr.com/4903/47382524831_0c9afa6fb6_b.jpg');
+
+
+  background-size: 100%;
+}
+
+#shade{
+  background-color: rgba(0,0,0,.6);
+  background-size: 100%;
 }
 
 .aboutteam-card{
@@ -101,4 +109,9 @@ main{
 
 div.container.card:hover{
 	box-shadow: 5px 5px 5px rgba( 0, 0, 0, .2);
+}
+
+#searchbar{
+  display: flex;
+  width: 1500px;
 }
