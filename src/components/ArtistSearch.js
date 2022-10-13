@@ -6,8 +6,8 @@ import ArtistCard from './ArtistCard.js';
 import ArtistsModal from './ArtistsModal.js';
 import axios from 'axios';
 
-const ARTIST_API = process.env.REACT_APP_ARTIST_API;
-const MUSIC_KEY = process.env.REACT_APP_MUSIC_KEY;
+const VENUE_API = process.env.REACT_APP_VENUE_API;
+const VENUE_KEY = process.env.REACT_APP_VENUE_KEY;
 
 class ArtistSearch extends React.Component {
 
@@ -15,15 +15,15 @@ class ArtistSearch extends React.Component {
 		super(props);
 		this.state = {
     showModal: false,
-			// clickedArtist: {},
+			clickedArtist: {},
 			artists: []
 		}
 	}
 
 setShowModalTrue = () => {
 		this.setState({ showModal: true });
-		console.log('yeah');
-		// const filteredArtist = data.filtered((artist)=>{
+		// console.log('yeah');
+		// const filteredArtist = artists.filtered((artist)=>{
 		// 	return artist._id === id;
 		// });
 		// this.setState({clickedArtist: filteredArtist[0]})
@@ -34,7 +34,7 @@ setShowModalTrue = () => {
 	}
 
 	getArtists = async () => {
-		const res = await axios.get(`${ARTIST_API}/performers?q=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
+		const res = await axios.get(`${VENUE_API}/performers?q=${this.props.searchQuery}&client_id=${VENUE_KEY}`);
 		const artistsData = res.data;
 		console.log(artistsData.performers);
 		this.setState({artists: artistsData.performers})
@@ -73,7 +73,7 @@ setShowModalTrue = () => {
 					<Container className="venue-results">
 						<Row>
 							<ArtistCard setShowModalTrue={this.setShowModalTrue} />
-							<ArtistsModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse}/>
+							<ArtistsModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} />
 						</Row>
 					</Container>
 				</Container>

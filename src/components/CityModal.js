@@ -1,33 +1,26 @@
 import React from 'react';
 import { Modal, Card } from 'react-bootstrap';
 
+
 class CityModal extends React.Component {
 	render() {
 		return (
 			<>
-				{/* <Modal show={this.props.showModal} onHide={this.props.setShowModalFalse}>
-					<Modal.Header closeButton>
-						<Modal.Title>{this.props.clickedArtist.title}</Modal.Title>
-					</Modal.Header>
-
-					<Modal.Body>
-						<Card.Text>{this.props.clickedArtist.description}</Card.Text>
-						<Card.Text>{this.props.clickedArtist.dates}</Card.Text>
-					</Modal.Body>
-
-					<Modal.Footer>
-						<Card.Img src={this.props.clickedArtist.image_url}></Card.Img>
-					</Modal.Footer>
-				</Modal> */}
 				<Modal show={this.props.showModal} onHide={this.props.setShowModalFalse}>
 					<Modal.Header closeButton>
-						<Modal.Title>Test City</Modal.Title>
+						<Modal.Title>{this.props.clickedVenue.name}</Modal.Title>
 					</Modal.Header>
 
 					<Modal.Body>
-						<Card.Text></Card.Text>
-						Test City
-						<Card.Text></Card.Text>
+						{this.props.events.map(event  => {
+							return(
+							<Card.Text>
+								{/* {this.props.events.Events.title} */}
+							</Card.Text>
+							)
+						})}
+						
+						{/* <Card.Text>{this.props.events}</Card.Text> */}
 					</Modal.Body>
 
 					<Modal.Footer>
