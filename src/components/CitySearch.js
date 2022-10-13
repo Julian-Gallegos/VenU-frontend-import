@@ -7,9 +7,9 @@ import CityModal from './CityModal.js';
 import axios from 'axios';
 import CitySearchMap from './CitySearchMap.js';
 
+
 const VENUE_API = process.env.REACT_APP_VENUE_API;
-// const MAP_API = process.env.REACT_APP_MAP_API;
-const MUSIC_KEY = process.env.REACT_APP_MUSIC_KEY;
+const VENUE_KEY = process.env.REACT_APP_VENUE_KEY;
 const MAP_KEY = process.env.REACT_APP_MAP_KEY;
 
 class CitySearch extends React.Component {
@@ -27,17 +27,15 @@ class CitySearch extends React.Component {
             errorMessage: '',
             showModal: false,
             mapURL: '',
-            // clickedArtist: {},
+            clickedVenue: [],
+            events: []
         }
     }
 
-    setShowModalTrue = () => {
+    setShowModalTrue = (id) => {
         this.setState({ showModal: true });
-        console.log('yeah');
-        // const filteredArtist = data.filtered((artist)=>{
-        // 	return artist._id === id;
-        // });
-        // this.setState({clickedArtist: filteredArtist[0]})
+        const filteredVenue = this.state.venues.filter(venue => venue.id === id);
+        this.setState({ clickedVenue: filteredVenue[0] }, () => this.getEvents());
     }
 
     setShowModalFalse = () => {
@@ -45,10 +43,18 @@ class CitySearch extends React.Component {
     }
 
     getVenues = async () => {
-        const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
+        const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${VENUE_KEY}`);
         const venuesData = response.data;
         this.setState({ venues: venuesData.venues }, () => this.handleMap());
     }
+
+    getEvents = async () => {
+        const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?venue.id=${this.state.clickedVenue.id}&client_id=${VENUE_KEY}`);
+        const eventsData = response.data.events.map(event => new Event(event));
+        this.setState({ events: eventsData }, console.log(eventsData));
+
+    }
+
 
     handleMap = async () => {
         try {
@@ -75,15 +81,6 @@ class CitySearch extends React.Component {
         this.setState({ mapURL: mapURL });
     }
 
-    // getCoordinates = async (venues) => {
-    //     const coordinatesArr = [];
-    //     venues.forEach(v => {
-    //         const coordinate = [v.location.lat, v.location.lon];
-    //         coordinatesArr.push(coordinate);
-    //     })
-    //     this.setState({ venueCoordinates: coordinatesArr });
-    // }
-
     handleSubmit = (e) => {
         this.props.handleFormSubmit(e);
         this.getVenues();
@@ -109,13 +106,33 @@ class CitySearch extends React.Component {
                     <h2> Venue Results </h2>
                     <Container className="venue-results">
                         <Row>
-                            <CityCard setShowModalTrue={this.setShowModalTrue} />
-                            <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} />
+                            {this.state.venues.map((venue, idx) => {
+                                return (
+                                    <CityCard
+                                        key={idx}
+                                        setShowModalTrue={this.setShowModalTrue}
+                                        name={venue.name}
+                                        address={venue.address}
+                                        id={venue.id}
+                                    />
+                                );
+                            })}
+                            <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events} />
                         </Row>
                     </Container>
                 </Container>
             </>
         )
+    }
+}
+
+class Event {
+    constructor(event) {
+        this.title = event.short_title;
+        this.type = event.type.toUpperCase();
+        let time_date = event.datetime_local.split('T');
+        this.time = time_date[1];
+        this.date = (/[0-9]+.[0-9]+.[0-9]+/).exec(event.datetime_local);
     }
 }
 
