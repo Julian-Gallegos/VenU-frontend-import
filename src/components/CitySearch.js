@@ -6,11 +6,12 @@ import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
 
 import axios from 'axios';
+import CitySearchMap from './CitySearchMap.js';
 
 
 const VENUE_API = process.env.REACT_APP_VENUE_API;
-const MAP_API = process.env.REACT_APP_MAP_API;
 const VENUE_KEY = process.env.REACT_APP_VENUE_KEY;
+const MAP_KEY = process.env.REACT_APP_MAP_KEY;
 
 class CitySearch extends React.Component {
 
@@ -20,6 +21,9 @@ class CitySearch extends React.Component {
             venues: [],
             location: {},
             cityMap: '',
+            currentLat:'',
+            currentLon: '',
+            venueCoordinates: [],
             error: false,
             errorMessage: '',
             showModal: false,
@@ -41,20 +45,25 @@ class CitySearch extends React.Component {
     getVenues = async () => {
         const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${VENUE_KEY}`);
         const venuesData = response.data;
-        this.setState({ venues: venuesData.venues });
+        this.setState({ venues: venuesData.venues },
+            this.getCoordinates(
+                this.state.venues
+            ));
     }
 
+
     getEvents = async () => {
-        const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?venue.id=${this.state.clickedVenue.id}&client_id=${process.env.REACT_APP_VENUE_KEY}`);
+        const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?venue.id=${this.state.clickedVenue.id}&client_id=${VENUE_KEY}`);
         const eventsData = response.data.events.map(event => new Event(event));
         this.setState({ events: eventsData }, console.log(eventsData));
 
     }
 
+
     handleMap = async (e) => {
         e.preventDefault();
         try {
-            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_API}&q=${this.state.searchQuery}&format=json`
+            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_KEY}&q=${this.state.searchQuery}&format=json`
             const locationRes = await axios.get(locationAPI);
             console.log(locationRes.data[0]);
             this.setState({
@@ -68,6 +77,12 @@ class CitySearch extends React.Component {
         }
     }
 
+    handleSubmit = (e) => {
+        this.props.handleFormSubmit(e);
+        this.getVenues();
+    }
+
+
     componentDidMount() {
         this.getVenues();
     }
@@ -75,9 +90,11 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-                <Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
+
+                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
                 <Container>
                     <h2>Search by Location</h2>
+                    <CitySearchMap></CitySearchMap>
                     <div className="search-by-location">
                         <p>{this.props.searchQuery}</p>
                     </div>

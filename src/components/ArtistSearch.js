@@ -23,6 +23,7 @@ class ArtistSearch extends React.Component {
 	}
 
 	setShowModalTrue = (id) => {
+
 		this.setState({ showModal: true });
 		const filteredArtist = this.state.artists.filter(artist => artist.id === id);
 		this.setState({clickedArtist: filteredArtist[0]}, () => this.getEvents());
@@ -39,6 +40,7 @@ class ArtistSearch extends React.Component {
 		this.setState({ artists: artistsData.performers })
 	}
 
+
 	getEvents = async () => {
 		const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?performers.id=${this.state.clickedArtist.id}&client_id=${process.env.REACT_APP_VENUE_KEY}`);
 		console.log(this.state.clickedArtist.id);
@@ -51,6 +53,11 @@ class ArtistSearch extends React.Component {
 
 	// }
 
+	handleSubmit = (e) => {
+		this.props.handleFormSubmit(e);
+		this.getArtists();
+	}
+
 	componentDidMount() {
 		this.getArtists();
 	}
@@ -58,7 +65,9 @@ class ArtistSearch extends React.Component {
 	render() {
 		return (
 			<>
-				<Header handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
+
+				<Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
+
 				<Container>
 					<h2> Venue Results </h2>
 					<Container>
