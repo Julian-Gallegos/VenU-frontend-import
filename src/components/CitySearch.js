@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
-
 import axios from 'axios';
 import CitySearchMap from './CitySearchMap.js';
 
@@ -20,13 +19,14 @@ class CitySearch extends React.Component {
         this.state = {
             venues: [],
             location: {},
-            cityMap: '',
-            currentLat:'',
-            currentLon: '',
-            venueCoordinates: [],
+            // cityMap: '',
+            // currentLat: '',
+            // currentLon: '',
+            // venueCoordinates: [],
             error: false,
             errorMessage: '',
             showModal: false,
+            mapURL: '',
             clickedVenue: [],
             events: []
         }
@@ -45,12 +45,8 @@ class CitySearch extends React.Component {
     getVenues = async () => {
         const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${VENUE_KEY}`);
         const venuesData = response.data;
-        this.setState({ venues: venuesData.venues },
-            this.getCoordinates(
-                this.state.venues
-            ));
+        this.setState({ venues: venuesData.venues }, () => this.handleMap());
     }
-
 
     getEvents = async () => {
         const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?venue.id=${this.state.clickedVenue.id}&client_id=${VENUE_KEY}`);
@@ -60,21 +56,29 @@ class CitySearch extends React.Component {
     }
 
 
-    handleMap = async (e) => {
-        e.preventDefault();
+    handleMap = async () => {
         try {
-            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_KEY}&q=${this.state.searchQuery}&format=json`
+            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_KEY}&q=${this.props.searchQuery}&format=json`
             const locationRes = await axios.get(locationAPI);
-            console.log(locationRes.data[0]);
             this.setState({
                 location: locationRes.data[0],
-                cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_API}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&zoom=12`,
-            });
+                // cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_KEY}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&zoom=12`,
+            }, () => this.displayMap());
         } catch (error) {
             console.log(error);
             this.setState({ error: true });
             this.setState({ errorMessage: error.message });
         }
+    }
+
+    displayMap = async () => {
+        const markers = this.state.venues.map(venue => {
+            return `markers=icon:tiny-red-cutout|${venue.location.lat},${venue.location.lon}`;
+        });
+        const markersString = markers.join('&');
+        console.log(markersString);
+        const mapURL = `https://maps.locationiq.com/v3/staticmap?key=pk.e38cc6fcabaadb8fe6a4d895963b9757&zoom=12&size=1000x600&format=png&maptype=roadmap&${markersString}`;
+        this.setState({ mapURL: mapURL });
     }
 
     handleSubmit = (e) => {
@@ -90,13 +94,12 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-
                 <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
                 <Container>
                     <h2>Search by Location</h2>
-                    <CitySearchMap></CitySearchMap>
+
                     <div className="search-by-location">
-                        <p>{this.props.searchQuery}</p>
+                        <CitySearchMap mapURL={this.state.mapURL} />
                     </div>
                 </Container>
                 <Container>
@@ -125,7 +128,6 @@ class CitySearch extends React.Component {
 
 class Event {
     constructor(event) {
-
         this.title = event.short_title;
         this.type = event.type.toUpperCase();
         let time_date = event.datetime_local.split('T');
