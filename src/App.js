@@ -56,6 +56,7 @@ class App extends React.Component {
     return(
       <>
       <main>
+        <div id='shade'>
         <Router>
           <Routes>
             <Route
@@ -89,6 +90,7 @@ class App extends React.Component {
             </Route>
           </Routes>
         </Router>
+        </div>
         </main>
       <Footer/>
       </>
