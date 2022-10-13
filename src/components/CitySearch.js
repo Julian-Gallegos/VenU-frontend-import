@@ -4,12 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
-
 import axios from 'axios';
 import CitySearchMap from './CitySearchMap.js';
 
 const VENUE_API = process.env.REACT_APP_VENUE_API;
-const MAP_API = process.env.REACT_APP_MAP_API;
+// const MAP_API = process.env.REACT_APP_MAP_API;
 const MUSIC_KEY = process.env.REACT_APP_MUSIC_KEY;
 const MAP_KEY = process.env.REACT_APP_MAP_KEY;
 
@@ -20,18 +19,18 @@ class CitySearch extends React.Component {
         this.state = {
             venues: [],
             location: {},
-            cityMap: '',
-            currentLat:'',
-            currentLon: '',
-            venueCoordinates: [],
+            // cityMap: '',
+            // currentLat: '',
+            // currentLon: '',
+            // venueCoordinates: [],
             error: false,
             errorMessage: '',
             showModal: false,
             // clickedArtist: {},
         }
     }
-    
- setShowModalTrue = () => {
+
+    setShowModalTrue = () => {
         this.setState({ showModal: true });
         console.log('yeah');
         // const filteredArtist = data.filtered((artist)=>{
@@ -42,26 +41,22 @@ class CitySearch extends React.Component {
 
     setShowModalFalse = () => {
         this.setState({ showModal: false });
-        }
-        
+    }
+
     getVenues = async () => {
         const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
         const venuesData = response.data;
-        this.setState({ venues: venuesData.venues },
-            this.getCoordinates(
-                this.state.venues
-            ));
+        this.setState({ venues: venuesData.venues });
     }
 
-    handleMap = async (e) => {
-        e.preventDefault();
+    handleMap = async () => {
         try {
-            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_KEY}&q=${this.state.searchQuery}&format=json`
+            const locationAPI = `https://us1.locationiq.com/v1/search.php?key=${MAP_KEY}&q=${this.props.searchQuery}&format=json`
             const locationRes = await axios.get(locationAPI);
             console.log(locationRes.data[0]);
             this.setState({
                 location: locationRes.data[0],
-                cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_API}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&zoom=12`,
+                // cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_KEY}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&zoom=12`,
             });
         } catch (error) {
             console.log(error);
@@ -70,37 +65,39 @@ class CitySearch extends React.Component {
         }
     }
 
-    getCoordinates = async (venues) => {
-        const coordinatesArr = [];
-        venues.forEach(v => {
-            const coordinate = [v.location.lat, v.location.lon];
-            coordinatesArr.push(coordinate);
-        })
-        this.setState({ venueCoordinates: coordinatesArr });
-    }
+    // getCoordinates = async (venues) => {
+    //     const coordinatesArr = [];
+    //     venues.forEach(v => {
+    //         const coordinate = [v.location.lat, v.location.lon];
+    //         coordinatesArr.push(coordinate);
+    //     })
+    //     this.setState({ venueCoordinates: coordinatesArr });
+    // }
 
     handleSubmit = (e) => {
         this.props.handleFormSubmit(e);
         this.getVenues();
+        this.handleMap();
     }
 
 
     componentDidMount() {
         this.getVenues();
+        this.handleMap();
     }
 
     render() {
         return (
             <>
-                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
+                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
                 <Container>
                     <h2>Search by Location</h2>
-                    <CitySearchMap></CitySearchMap>
+                    <CitySearchMap location={this.state.location} venues={this.state.venues} />
                     <div className="search-by-location">
                         {this.state.venues.map(venue => { //This should be changed to a map later
                             return (
                                 <p>
-                                        {venue.name}: {venue.address}
+                                    {venue.name}: {venue.address}
                                 </p>
                             )
                         })}
@@ -115,10 +112,10 @@ class CitySearch extends React.Component {
                             <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} />
                         </Row>
                     </Container>
-                </Container>   
+                </Container>
             </>
-            )
-        }
+        )
     }
+}
 
 export default CitySearch;
