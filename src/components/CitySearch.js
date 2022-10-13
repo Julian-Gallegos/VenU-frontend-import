@@ -6,7 +6,7 @@ import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
 
 import axios from 'axios';
-import { type } from '@testing-library/user-event/dist/type/index.js';
+
 
 const VENUE_API = process.env.REACT_APP_VENUE_API;
 const MAP_API = process.env.REACT_APP_MAP_API;
@@ -47,8 +47,8 @@ class CitySearch extends React.Component {
     getEvents = async () => {
         const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?venue.id=${this.state.clickedVenue.id}&client_id=${process.env.REACT_APP_VENUE_KEY}`);
         const eventsData = response.data.events.map(event => new Event(event));
-        // const eventsData = response.data.events;
         this.setState({ events: eventsData }, console.log(eventsData));
+
     }
 
     handleMap = async (e) => {
@@ -97,7 +97,7 @@ class CitySearch extends React.Component {
                                     />
                                 );
                             })}
-                            <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events}/>
+                            <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events} />
                         </Row>
                     </Container>
                 </Container>
@@ -107,9 +107,13 @@ class CitySearch extends React.Component {
 }
 
 class Event {
-    constructor(event){
-        this.type = event.type;
+    constructor(event) {
+
         this.title = event.short_title;
+        this.type = event.type.toUpperCase();
+        let time_date = event.datetime_local.split('T');
+        this.time = time_date[1];
+        this.date = (/[0-9]+.[0-9]+.[0-9]+/).exec(event.datetime_local);
     }
 }
 
