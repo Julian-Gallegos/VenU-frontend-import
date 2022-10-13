@@ -47,7 +47,7 @@ class CitySearch extends React.Component {
     getVenues = async () => {
         const response = await axios.get(`${VENUE_API}/venues?city=${this.props.searchQuery}&client_id=${MUSIC_KEY}`);
         const venuesData = response.data;
-        this.setState({ venues: venuesData.venues },() => this.handleMap());
+        this.setState({ venues: venuesData.venues }, () => this.handleMap());
     }
 
     handleMap = async () => {
@@ -57,7 +57,7 @@ class CitySearch extends React.Component {
             this.setState({
                 location: locationRes.data[0],
                 // cityMap: `https://maps.locationiq.com/v3/staticmap?key=${MAP_KEY}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&zoom=12`,
-            },() => this.displayMap());
+            }, () => this.displayMap());
         } catch (error) {
             console.log(error);
             this.setState({ error: true });
@@ -67,11 +67,11 @@ class CitySearch extends React.Component {
 
     displayMap = async () => {
         const markers = this.state.venues.map(venue => {
-            return `icon:tiny-red-cutout|${venue.location.lat},${venue.location.lon}`;
+            return `markers=icon:tiny-red-cutout|${venue.location.lat},${venue.location.lon}`;
         });
         const markersString = markers.join('&');
         console.log(markersString);
-        const mapURL = `https://maps.locationiq.com/v3/staticmap?key=pk.e38cc6fcabaadb8fe6a4d895963b9757&zoom=11&size=800x400&format=png&maptype=roadmap&markers=${markersString}`;
+        const mapURL = `https://maps.locationiq.com/v3/staticmap?key=pk.e38cc6fcabaadb8fe6a4d895963b9757&zoom=12&size=1000x600&format=png&maptype=roadmap&${markersString}`;
         this.setState({ mapURL: mapURL });
     }
 
@@ -100,16 +100,9 @@ class CitySearch extends React.Component {
                 <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
                 <Container>
                     <h2>Search by Location</h2>
-                    <CitySearchMap mapURL={this.state.mapURL} />
+
                     <div className="search-by-location">
-                        {this.state.venues.map(venue => { //This should be changed to a map later
-                            return (
-                                <p>
-                                    {venue.name}: {venue.address}
-                                </p>
-                            )
-                        })}
-                        <p>{this.props.searchQuery}</p>
+                        <CitySearchMap mapURL={this.state.mapURL} />
                     </div>
                 </Container>
                 <Container>
