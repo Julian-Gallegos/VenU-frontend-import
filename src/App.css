@@ -1,12 +1,26 @@
 
-/* USER PROFILE COMPONENT STYLING */
+.font-link {
+  font-family: 'Andada Pro', serif;
+}
 
+#root {
+  font-family: 'Andada Pro',
+    serif;
+}
+
+/* .container {
+  background-color:
+} */
+
+
+/* USER PROFILE COMPONENT STYLING */
 
 
 
 .saved-venue-artist-div {
   display: flex;
   width: 800px;
+  /* background-color: aqua; */
 
 }
 
@@ -30,7 +44,9 @@
   height: 400px;
   width: 800px;
   /* margin: 50px; */
-  border: 2px solid black;
+  border-radius: 8px;
+  background-color: #FFCE38;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* CITY SEARCH COMPONENT STYLING */
@@ -39,7 +55,9 @@
   overflow: scroll;
   height: 400px;
   width: 800px;
-  border: 2px solid black;
+  background-color: #FFCE38;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px
 }
 
 .venue-results {
