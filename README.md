@@ -384,4 +384,3 @@ We only have one data model, so this shouldn’t matter
 
 Blocker
 - Found out the API key we were building our site around wasn't available. We used RapidAPI and luckily found a new API that would meet our requirements.
-

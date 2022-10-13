@@ -1,86 +1,38 @@
-
-/* USER PROFILE COMPONENT STYLING */
-
-
-
-
-.saved-venue-artist-div {
-  display: flex;
-  width: 800px;
-
-}
-
-.saved-div-container {
-  margin: 50px;
-  
-}
-
-.saved-div {
-  overflow-y: scroll;
-  height: 200px;
-  width: 400px;
-  border-radius: 8px;
+.App {
   text-align: center;
-  background-color: #FFCE38;
-  box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-.link-to-favorites {
-  overflow: scroll;
-  height: 400px;
-  width: 800px;
-  /* margin: 50px; */
-  border: 2px solid black;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-/* CITY SEARCH COMPONENT STYLING */
-
-.search-by-location {
-  overflow: scroll;
-  height: 400px;
-  width: 800px;
-  border: 2px solid black;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.venue-results {
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  width: 100%;
-  height: 192px;
-  overflow: auto;
-  overflow-x: scroll;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-div.card {
-  width: 500px;
+.App-link {
+  color: #61dafb;
 }
 
-.searched-artists{
-  margin: 50px;
-}
-
-.artist-info{
-  border: 2px solid black;
-  height: 400px;
-  width: 400px;
-  overflow: hidden;
-}
-
-.upcoming-concerts{
-  margin: 50px;
-}
-
-nav.navbar.navbar-expand.navbar-dark.bg-dark{
-  background-color: white;
-}
-
-main{
-  background-color: #F8F5F2;
-}
-
-.aboutteam-card{
-  background-color: blue;
-}
-
-div.container.card:hover{
-	box-shadow: 5px 5px 5px rgba( 0, 0, 0, .2);
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
