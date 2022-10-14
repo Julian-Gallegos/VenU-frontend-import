@@ -12,7 +12,7 @@ class Footer extends React.Component {
     return (
       <>
 
-        <Navbar bg="dark" variant="dark" style={{}}>
+        <Navbar bg="dark" variant="dark" >
           <Container>
             <Nav className="me-auto">
               <Nav.Link href="/aboutteam">AboutTeam</Nav.Link>

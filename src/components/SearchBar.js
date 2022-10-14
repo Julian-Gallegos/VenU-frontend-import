@@ -20,7 +20,7 @@ class Searchbar extends React.Component {
     if (e.target.value === "city") {
       this.setState({ placeholder: "Search a city for its venue info", formType: "citysearch" });
     } else {
-      this.setState({ placeholder: "Search an artist for their info", formType: "artistsearch" });
+      this.setState({ placeholder: "Search an performer for their info", formType: "artistsearch" });
     }
   }
 
@@ -43,7 +43,7 @@ class Searchbar extends React.Component {
       <>
         <Form.Select onChange={this.handleSelect} aria-label="Default select example" style={{width: '140px'}}>
           <option value="city">City Venues</option>
-          <option value="artist">Artist</option>
+          <option value="artist">Performer</option>
         </Form.Select>
         
         <Form onSubmit={this.props.handleFormSubmit} onChange={this.props.handleFormChange}style={{display: 'flex', alignItems: 'center'}}>       

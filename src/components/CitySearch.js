@@ -97,13 +97,7 @@ class CitySearch extends React.Component {
             <>
                 <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
 
-                <div>
-                    <h2 id="search-h2">Search by Location</h2>
-
-                    <div class="map-container">
-                        <CitySearchMap mapURL={this.state.mapURL} />
-                    </div>
-                </div>
+                
                 <div id="venue-container">
                     <h2 id='venue-header'> Venue Results </h2>                
                         <div id="venue-results">
@@ -121,6 +115,13 @@ class CitySearch extends React.Component {
                             <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events} />
 
                         </div>
+                </div>
+                <div>
+                    <h2 id="search-h2">Search by Location</h2>
+
+                    <div class="map-container">
+                        <CitySearchMap mapURL={this.state.mapURL} />
+                    </div>
                 </div>
             </>
         )

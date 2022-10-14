@@ -30,12 +30,12 @@ class App extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    this.setState({searchQuery: this.state.formData, redirect: true});
+    this.setState({ searchQuery: this.state.formData, redirect: true });
   }
 
   handleFormChange = (e) => {
     e.preventDefault();
-    this.setState({formData: e.target.value});
+    this.setState({ formData: e.target.value });
   }
 
   /* 
@@ -46,53 +46,53 @@ class App extends React.Component {
   */
   redirectHandler = () => {
     if (this.state.redirect) {
-      this.setState({redirect: false});
+      this.setState({ redirect: false });
       return true;
     }
     return false;
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <>
-      <main>
-        <div id='shade'>
-        <Router>
-          <Routes>
-            <Route
-              exact path="/"
-              element={<LogIn />}
-            ></Route>
-            <Route
-              exact path="/signup"
-              element={<SignUp />}
-            >
-            </Route>
-            <Route
-              exact path="/userprofile"
-              element={<UserProfile handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler}/>}
-            >
-            </Route>
-            <Route
-              exact path="/citysearch"
-              element={<CitySearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler}/>}
-            >
-            </Route>
-            <Route
-              exact path="/artistsearch"
-              element={<ArtistSearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler}/>}
-            >
-            </Route>
-            <Route
-              exact path="/aboutteam"
-              element={<AboutTeam />}
-            >
-            </Route>
-          </Routes>
-        </Router>
-        </div>
+        <main>
+          <div id='shade'>
+            <Router>
+              <Routes>
+                <Route
+                  exact path="/"
+                  element={<LogIn />}
+                ></Route>
+                <Route
+                  exact path="/signup"
+                  element={<SignUp />}
+                >
+                </Route>
+                <Route
+                  exact path="/userprofile"
+                  element={<UserProfile handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler} />}
+                >
+                </Route>
+                <Route
+                  exact path="/citysearch"
+                  element={<CitySearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler} />}
+                >
+                </Route>
+                <Route
+                  exact path="/artistsearch"
+                  element={<ArtistSearch handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} searchQuery={this.state.searchQuery} redirectHandler={this.redirectHandler} />}
+                >
+                </Route>
+                <Route
+                  exact path="/aboutteam"
+                  element={<AboutTeam />}
+                >
+                </Route>
+              </Routes>
+            </Router>
+          </div>
         </main>
-      <Footer/>
+        <Footer />
       </>
     )
   }

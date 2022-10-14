@@ -3,26 +3,19 @@
   font-family: 'Andada Pro', serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
 #root {
   font-family: 'Andada Pro',
     serif;
   color: whitesmoke;
 }
 
-/* .container {
-  background-color:
-} */
-
-
 /* USER PROFILE COMPONENT STYLING */
-
-
 
 .saved-venue-artist-div {
   display: flex;
   width: 800px;
-  /* background-color: aqua; */
-
 }
 
 .saved-div-container {
@@ -36,7 +29,7 @@
   width: 400px;
   border-radius: 8px;
   text-align: center;
-  background-color: #FFCE38;
+  background-color: #faf5f2;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -46,25 +39,11 @@
   width: 800px;
   /* margin: 50px; */
   border-radius: 8px;
-  background-color: #FFCE38;
+  background-color: #faf5f2;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* CITY SEARCH COMPONENT STYLING */
-
-.search-by-location {
-  display: flex;
-  align-Items: center;
-  justify-Content: center;
-  height: 100vh;
-  overflow: scroll;
-  /* height: 400px; */
-  width: 100px;
-  background-color: #FFCE38;
-  box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 8px
-}
-
 
 .map-container {
   display: flex;
@@ -73,17 +52,9 @@
 
 #map-image {
   width: 70%;
-}
-
-.venue-results {
-  border: 4px solid white;
-  background-color: black;
   border-radius: 8px;
-  overflow-x: auto;
-  display: flex;
-  scrollbar-width: none;
-  max-height: 200px;
-
+  border: solid 2px white;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 #venue-container {
@@ -95,26 +66,52 @@
 
 #venue-results {
   display: flex;
-  width: 80%;
-  height: 80%;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-between;
+  overflow-x: scroll;
+  display: flex;
+  scrollbar-width: none;
+  max-height: 200px;
+  width: 70%;
+  background-color:  #f0f0f0;
+  border:solid 2px white;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#venue-results::-webkit-scrollbar{
+  display: none;
 }
 
 div.card {
+  background-color: #212529;
   min-width: 200px;
+  min-height: 100px;
   margin: 8px;
   text-align: center;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  
+  color: white;
+}
 
+div.card:hover{
+cursor: pointer;
+background-color: #272b30;
+color: white; 
+ box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+div.col{
+  display: flex;
+  justify-content: center;
+}
+
+div.modal-title.h4{
+  font-family: 'Andada Pro',
+}
 
 #artist-results, #venue-header, #search-h2 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
-
+  font-family: 'Yeseva One', cursive;
 }
 
 .searched-artists{
@@ -136,19 +133,21 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark{
   background-color: white;
 }
 
+a.navbar-brand{
+  font-family: 'Yeseva One', cursive;
+  font-size: 50px;
+}
+
 main{
-  background-image: url('https://live.staticflickr.com/4903/47382524831_0c9afa6fb6_b.jpg');
-  background-size: 100%;
-  height: 2000px;
+  background-image: url('https://live.staticflickr.com/5490/10394137396_0700469bd4_b.jpg');
+  background-size: 200%;
+  min-height: 1600px;
 }
 
 #shade{
   background-color: rgba(0,0,0,.6);
   background-size: 100%;
-}
-
-.aboutteam-card{
-  background-color: blue;
+  min-height: 1600px;
 }
 
 div.container.card:hover{

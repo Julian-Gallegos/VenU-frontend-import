@@ -12,12 +12,10 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <Navbar bg="light" variant="light" style={{backgroundColor: 'white'}}>
+        <Navbar bg="dark" variant="dark" style={{ height: '100px' }}>
           <Container>
-            <Navbar.Brand href="#home">VenU</Navbar.Brand>
-
-            <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
-
+            <Navbar.Brand href="#home" >VenU</Navbar.Brand>
+            <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
             <Nav className="me-auto">
               <Nav.Link href="/userprofile">Username</Nav.Link>
             </Nav>
