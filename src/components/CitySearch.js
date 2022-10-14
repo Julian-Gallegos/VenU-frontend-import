@@ -9,6 +9,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router-dom';
 
 
+
 const VENUE_API = process.env.REACT_APP_VENUE_API;
 const VENUE_KEY = process.env.REACT_APP_VENUE_KEY;
 const MAP_KEY = process.env.REACT_APP_MAP_KEY;
@@ -95,17 +96,16 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-                <Container>
-                    <h2>Search by Location</h2>
+                <div>
+                    <h2 id="search-h2">Search by Location</h2>
 
-                    <div className="search-by-location">
+                    <div class="map-container">
                         <CitySearchMap mapURL={this.state.mapURL} />
                     </div>
-                </Container>
-                <Container>
-                    <h2> Venue Results </h2>
-                    <Container className="venue-results">
-                        <Row>
+                </div>
+                <div id="venue-container">
+                    <h2 id='venue-header'> Venue Results </h2>                
+                        <div id="venue-results">
                             {this.state.venues.map((venue, idx) => {
                                 return (
                                     <CityCard
@@ -118,9 +118,9 @@ class CitySearch extends React.Component {
                                 );
                             })}
                             <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events} />
-                        </Row>
-                    </Container>
-                </Container>
+
+                        </div>
+                </div>                       
                 {this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
             </>
         )

@@ -66,9 +66,9 @@ class ArtistSearch extends React.Component {
 		return (
 			<>
 				<Container>
-					<h2> Venue Results </h2>
+					<h2 id='artist-results'> Artist Results </h2>
 					<Container>
-						<Row style={{margin: '50px'}}>
+						<Row>
 							{this.state.artists.map((artist, idx) => {
 								return (
 									<Col>

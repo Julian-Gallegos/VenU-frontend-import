@@ -6,6 +6,7 @@
 #root {
   font-family: 'Andada Pro',
     serif;
+  color: whitesmoke;
 }
 
 /* .container {
@@ -52,24 +53,68 @@
 /* CITY SEARCH COMPONENT STYLING */
 
 .search-by-location {
+  display: flex;
+  align-Items: center;
+  justify-Content: center;
+  height: 100vh;
   overflow: scroll;
-  height: 400px;
-  width: 800px;
+  /* height: 400px; */
+  width: 100px;
   background-color: #FFCE38;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px
 }
 
+
+.map-container {
+  display: flex;
+  border-radius: 8px;
+}
+
+#map-image {
+  width: 70%;
+}
+
 .venue-results {
+  border: 4px solid white;
+  background-color: black;
+  border-radius: 8px;
+  overflow-x: auto;
+  display: flex;
+  scrollbar-width: none;
+  max-height: 200px;
+
+}
+
+#venue-container {
   display: flex;
   width: 100%;
-  height: 192px;
-  overflow: auto;
-  overflow-x: scroll;
+  flex-direction: column;
+  align-items: center;
+}
+
+#venue-results {
+  display: flex;
+  width: 80%;
+  height: 80%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
 }
 
 div.card {
-  width: 500px;
+  min-width: 200px;
+  margin: 8px;
+  text-align: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  
+
+
+#artist-results, #venue-header, #search-h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
 }
 
 .searched-artists{
@@ -93,9 +138,8 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark{
 
 main{
   background-image: url('https://live.staticflickr.com/4903/47382524831_0c9afa6fb6_b.jpg');
-
-
   background-size: 100%;
+  height: 2000px;
 }
 
 #shade{
