@@ -8,6 +8,7 @@ import axios from 'axios';
 import CitySearchMap from './CitySearchMap.js';
 
 
+
 const VENUE_API = process.env.REACT_APP_VENUE_API;
 const VENUE_KEY = process.env.REACT_APP_VENUE_KEY;
 const MAP_KEY = process.env.REACT_APP_MAP_KEY;
@@ -97,15 +98,13 @@ class CitySearch extends React.Component {
                 <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
                 <Container>
                     <h2>Search by Location</h2>
-
-                    <div className="search-by-location">
-                        <CitySearchMap mapURL={this.state.mapURL} />
-                    </div>
+                        <CitySearchMap mapURL={this.state.mapURL} className="search-by-location" />
                 </Container>
                 <Container>
                     <h2> Venue Results </h2>
+
                     <Container className="venue-results">
-                        <Row>
+
                             {this.state.venues.map((venue, idx) => {
                                 return (
                                     <CityCard
@@ -118,8 +117,8 @@ class CitySearch extends React.Component {
                                 );
                             })}
                             <CityModal showModal={this.state.showModal} setShowModalFalse={this.setShowModalFalse} clickedVenue={this.state.clickedVenue} events={this.state.events} />
-                        </Row>
                     </Container>
+
                 </Container>
             </>
         )
