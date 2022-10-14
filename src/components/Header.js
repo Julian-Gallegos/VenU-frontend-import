@@ -14,7 +14,7 @@ class Header extends React.Component {
   render() {
     return (
       <>
-        <Navbar bg="light" variant="light" style={{backgroundColor: 'white'}}>
+        <Navbar bg="dark" variant="dark" style={{ height: '100px' }}>
           <Container>
             <Navbar.Brand href="#home">VenU</Navbar.Brand>
 

@@ -43,7 +43,7 @@ class Searchbar extends React.Component {
       <>
         <Form.Select onChange={this.handleSelect} aria-label="Default select example" style={{width: '140px'}}>
           <option value="city">City Venues</option>
-          <option value="artist">Artist</option>
+          <option value="artist">Performer</option>
         </Form.Select>
         <Form onSubmit={this.props.handleFormSubmit} onChange={this.props.handleFormChange} style={{display: 'flex', alignItems: 'center'}}>         
           <Form.Group className="mb-3" controlId="formSearch" style={{width: '800px', paddingTop: '16px'}}>

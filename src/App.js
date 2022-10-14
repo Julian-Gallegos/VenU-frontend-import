@@ -114,7 +114,7 @@ class App extends React.Component {
       console.error('Error in addProfileToDB: ', error);
     }
   }
-
+  
   render() {
     return (
       <>
