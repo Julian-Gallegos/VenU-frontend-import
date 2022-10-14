@@ -10,7 +10,6 @@ import ArtistSearch from './components/ArtistSearch.js';
 import AboutTeam from './components/AboutTeam.js'
 import Header from './components/Header.js'
 import { withAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 
 // import LogInRouter from './components/LogInRouter';
 import {
@@ -18,8 +17,6 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 class App extends React.Component {
   constructor(props) {
