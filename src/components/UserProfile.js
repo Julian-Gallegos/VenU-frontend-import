@@ -1,9 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import CityCard from './CityCard';
 import Row from 'react-bootstrap/Row';
-import CityModal from './CityModal.js';
 import { withAuth0 } from '@auth0/auth0-react';
 import { Navigate } from 'react-router-dom';
 
@@ -19,6 +17,7 @@ class UserProfile extends React.Component {
             venuesData: [],
             performers: [],
             performersData: [],
+            eventsData: [],
         }
     }
 
@@ -34,8 +33,7 @@ class UserProfile extends React.Component {
                     url: '/profile'
                 }
                 const fetchedProfile = await axios(config);
-                console.log(fetchedProfile.data.venues)
-                this.setState({ venues: fetchedProfile.data.venues, artists: fetchedProfile.data.artists }, () => this.handleAPI());
+                this.setState({ venues: fetchedProfile.data.venues, performers: fetchedProfile.data.artists }, () => this.handleAPI());
             }
         } catch (error) {
             console.error('Error in checkVenue: ', error);
@@ -45,6 +43,7 @@ class UserProfile extends React.Component {
     handleAPI = async () => {
         this.handleVenuesAPI();
         this.handleArtistsAPI();
+        this.handleEventsAPI();
     }
 
     handleVenuesAPI = () => {
@@ -53,7 +52,7 @@ class UserProfile extends React.Component {
                 const response = await axios.get(`${VENUE_API}/venues/${venue_id.id}?client_id=${VENUE_KEY}`);
                 const venuesData = response.data;
                 this.setState({ venuesData: [...this.state.venuesData, venuesData] });
-            } catch(error) {
+            } catch (error) {
                 console.error('Error in handleVenuesAPI');
             }
         });
@@ -64,12 +63,25 @@ class UserProfile extends React.Component {
             try {
                 const response = await axios.get(`${VENUE_API}/performers/${performer_id.id}?client_id=${VENUE_KEY}`);
                 const performersData = response.data;
-                this.setState({ venues: [...this.state.performersData, performersData] });
-            } catch(error) {
-                console.error('Error in handleVenuesAPI');
+                this.setState({ performersData: [...this.state.performersData, performersData] });
+            } catch (error) {
+                console.error('Error in handleArtistsAPI');
             }
         });
     };
+    handleEventsAPI = async () => {
+        this.state.performers.forEach((performer_id) => {
+            this.state.venues.forEach(async (venues_id) => {
+                try {
+                    const response = await axios.get(`${VENUE_API}/events?performers.id=${performer_id.id}&venue.id=${venues_id.id}&client_id=${VENUE_KEY}`);
+                    const eventsData = response.data;
+                    this.setState({ eventsData: [...this.state.eventsData, eventsData] }, console.log(this.state.eventsData));
+                } catch (error) {
+                    console.error('Error in handleEventsAPI');
+                }
+            });
+        });
+    }
 
     componentDidMount() {
         this.fetchSaved();
@@ -90,9 +102,8 @@ class UserProfile extends React.Component {
                                 <Container className="venue-results">
                                     <Row>
                                         {this.state.venuesData.map((venue, idx) => {
-                                            console.log(venue);
                                             return (
-                                                <div>{venue.name}</div>
+                                                <div key={`venue${idx}`} style={{ color: 'black' }}>{venue.name}</div>
                                             );
                                         })}
                                     </Row>
@@ -102,33 +113,28 @@ class UserProfile extends React.Component {
                         <div className="saved-div-container">
                             <h2>Saved Artists</h2>
                             <div className="saved-div">
-                                <p>Hello world</p>
+                                <Container className="venue-results">
+                                    <Row>
+                                        {this.state.performersData.map((performer, idx) => {
+                                            return (
+                                                <div key={`performer${idx}`} style={{ color: 'black' }}>{performer.name}</div>
+                                            );
+                                        })}
+                                    </Row>
+                                </Container>
                             </div>
                         </div>
                     </div>
                     <div>
                         <h2>Link to Favorites</h2>
                         <Container className="link-to-favorites">
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
-                            <p>Hello world</p>
+                            <Row>
+                                {this.state.eventsData.map((event, idx) => {
+                                    return (
+                                        <div key={`event${idx}`} style={{ color: 'black' }}>{event.title} {event.datetime_local}</div>
+                                    );
+                                })}
+                            </Row>
                         </Container>
                     </div>
                 </Container>
