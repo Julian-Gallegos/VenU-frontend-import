@@ -2,9 +2,11 @@ import React from 'react';
 
 
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import SearchBar from './SearchBar.js';
+import { withAuth0 } from '@auth0/auth0-react';
+
+import Profile from './Profile.js';
 
 
 
@@ -16,11 +18,9 @@ class Header extends React.Component {
           <Container>
             <Navbar.Brand href="#home">VenU</Navbar.Brand>
 
-            <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/>
-
-            <Nav className="me-auto">
-              <Nav.Link href="/userprofile">Username</Nav.Link>
-            </Nav>
+            {/* <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/> */}
+            {this.props.auth0.isAuthenticated ? <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/> : <></>}
+            <div onClick={this.props.handleClickedProfile}><Profile></Profile></div>
           </Container>
         </Navbar>
       </>
@@ -28,4 +28,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withAuth0(Header);
