@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ArtistCard from './ArtistCard.js';
 import ArtistsModal from './ArtistsModal.js';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 const VENUE_API = process.env.REACT_APP_VENUE_API;
@@ -65,9 +65,6 @@ class ArtistSearch extends React.Component {
 	render() {
 		return (
 			<>
-
-				<Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
-
 				<Container>
 					<h2> Venue Results </h2>
 					<Container>
@@ -89,6 +86,7 @@ class ArtistSearch extends React.Component {
 						</Row>
 					</Container>
 				</Container>
+				{this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
 			</>
 		)
 	}
