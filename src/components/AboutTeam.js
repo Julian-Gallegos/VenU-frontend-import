@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Navigate } from 'react-router-dom';
 import '../App.css';
 
 class AboutTeam extends React.Component {
@@ -104,6 +105,7 @@ class AboutTeam extends React.Component {
 						</Col>
 					</Row>
 				</Container>
+				{this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
 			</>
 		)
 	}

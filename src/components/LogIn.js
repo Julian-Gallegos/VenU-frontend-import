@@ -7,6 +7,7 @@ import Profile from './Profile';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
+import { Navigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 
@@ -19,7 +20,8 @@ class LogIn extends React.Component {
                     <AuthLogIn />
                     <AuthLogOut />
                     <Profile />
-                    <Form>
+                    {this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
+                    {/* <Form>
                         <Form.Label>Log In</Form.Label>
                         <Form.Group className="mb-3" controlId="formUserName">
                             <Form.Label>Username</Form.Label>
@@ -39,7 +41,7 @@ class LogIn extends React.Component {
                             Sign In With Google
                         </Button>
                         <Link to="/signup" className="link" style={{ color: "black" }} >Sign Up</Link>
-                    </Form>
+                    </Form> */}
                 </Container>
             </>
         )

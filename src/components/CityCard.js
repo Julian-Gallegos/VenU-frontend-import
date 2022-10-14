@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-
+import { withAuth0 } from '@auth0/auth0-react';
 
 class CityCard extends React.Component {
 	render() {
@@ -19,4 +19,4 @@ class CityCard extends React.Component {
 	}
 }
 
-export default CityCard;
+export default withAuth0(CityCard);

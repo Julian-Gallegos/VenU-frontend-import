@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
 import axios from 'axios';
 import CitySearchMap from './CitySearchMap.js';
+import { withAuth0 } from '@auth0/auth0-react';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -95,9 +96,6 @@ class CitySearch extends React.Component {
     render() {
         return (
             <>
-                <Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
-
-                
                 <div id="venue-container">
                     <h2 id='venue-header'> Venue Results </h2>                
                         <div id="venue-results">
@@ -122,7 +120,8 @@ class CitySearch extends React.Component {
                     <div class="map-container">
                         <CitySearchMap mapURL={this.state.mapURL} />
                     </div>
-                </div>
+                </div>                       
+                {this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
             </>
         )
     }
@@ -138,4 +137,4 @@ class Event {
     }
 }
 
-export default CitySearch;
+export default withAuth0(CitySearch);
