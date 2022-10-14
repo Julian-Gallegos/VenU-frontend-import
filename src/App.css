@@ -6,6 +6,7 @@
 #root {
   font-family: 'Andada Pro',
     serif;
+  color: whitesmoke;
 }
 
 /* .container {
@@ -52,24 +53,66 @@
 /* CITY SEARCH COMPONENT STYLING */
 
 .search-by-location {
+  display: flex;
+  align-Items: center;
+  justify-Content: center;
+  height: 100vh;
   overflow: scroll;
-  height: 400px;
-  width: 800px;
+  /* height: 400px; */
+  width: 100px;
   background-color: #FFCE38;
   box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px
 }
 
+.map-container {
+  display: flex;
+
+}
+
+#map-image {
+  width: 70%;
+}
+
 .venue-results {
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 192px;
   overflow: auto;
   overflow-x: scroll;
 }
 
+#venue-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+#venue-results {
+  display: flex;
+  width: 80%;
+  height: 80%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+}
+
 div.card {
   width: 500px;
+  margin: 20px;
+}
+
+div.card-body {
+  color:black;
+  text-align: center;
+}
+
+#artist-results, #venue-header, #search-h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .searched-artists{
