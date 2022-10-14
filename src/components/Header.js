@@ -1,6 +1,6 @@
 import React from 'react';
-
-
+import AuthLogIn from './AuthLogIn';
+import AuthLogOut from './AuthLogOut';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import SearchBar from './SearchBar.js';
@@ -22,6 +22,8 @@ class Header extends React.Component {
             {this.props.auth0.isAuthenticated ? <SearchBar handleFormSubmit={this.props.handleFormSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler}/> : <></>}
             <div onClick={this.props.handleClickedProfile}><Profile></Profile></div>
           </Container>
+          {!this.props.auth0.isAuthenticated ? <AuthLogIn /> : <></>}
+            {this.props.auth0.isAuthenticated ? <AuthLogOut /> : <></>}
         </Navbar>
       </>
     )

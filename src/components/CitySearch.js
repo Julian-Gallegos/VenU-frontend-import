@@ -1,6 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import CityCard from './CityCard.js';
 import CityModal from './CityModal.js';
 import axios from 'axios';

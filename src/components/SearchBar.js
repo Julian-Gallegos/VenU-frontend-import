@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import {Form, Row, Col} from 'react-bootstrap';
+import {Form} from 'react-bootstrap';
 import { Navigate } from "react-router-dom";
 
 class Searchbar extends React.Component {

@@ -1,15 +1,9 @@
 import React from 'react';
-import AuthLogIn from './AuthLogIn';
-import AuthLogOut from './AuthLogOut';
-import Profile from './Profile';
+
 // import SignUp from './SignUp';
 // import ForgotPassword from './ForgotPassword';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { Navigate } from 'react-router-dom';
-import {Link} from 'react-router-dom';
-
 
 class LogIn extends React.Component {
     render() {
@@ -17,9 +11,6 @@ class LogIn extends React.Component {
             <>
                 <Container>
                     <h1>VenU</h1>
-                    <AuthLogIn />
-                    <AuthLogOut />
-                    <Profile />
                     {this.props.redirectToProfile() ? <Navigate to={`/userprofile`} /> : <></>}
                     {/* <Form>
                         <Form.Label>Log In</Form.Label>

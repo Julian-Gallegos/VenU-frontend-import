@@ -86,10 +86,11 @@ class AboutTeam extends React.Component {
 							<Card style={{ width: '18rem' }} className='aboutteam-card'>
 								<Card.Img variant="top" src="./src/images/julian.jpg" />
 								<Card.Body>
-									<Card.Title>Julian Gallegos</Card.Title>
+									<Card.Title>Julian Gallegos (He/Him)</Card.Title>
 									<Card.Text>
-										Some quick example text to build on the card title and make up the
-										bulk of the card's content.
+										Julian Gallegos is a recent graduate from The University of Washington with a background in Customer Service.
+										He has always found computers and new technologies amazing. He is currently exploring various topics in software design and computer science.
+										His core copetencies include Leadership, Communication, and Teamwork.
 									</Card.Text>
 								</Card.Body>
 								<ListGroup className="list-group-flush">

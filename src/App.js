@@ -68,52 +68,6 @@ class App extends React.Component {
     }
     return false;
   }
-
-  profileInDB = async () => {
-    if (this.props.auth0.isAuthenticated) {
-      try {
-        const res = await this.props.auth0.getIdTokenClaims();
-        const token = res.__raw;
-        const config = {
-          headers: { Authorization: `Bearer ${token}` },
-          method: 'get',
-          baseURL: SERVER_URL,
-          url: `/profile`,
-        }
-        const profile = await axios(config);
-        console.log(profile);
-
-        if (profile.data.length>0) {
-          console.log('profile exists?');
-          return true;
-        }
-      } catch (error) {
-        console.error('Error in profileInDB: ', error);
-      }
-    }
-    return false;
-  }
-
-  addProfileToDB = async () => {
-    try {
-      console.log('ping');
-      const res = await this.props.auth0.getIdTokenClaims();
-      const token = res.__raw;
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-        method: 'post',
-        baseURL: SERVER_URL,
-        url: `/profile`,
-        data: {
-          venues: [],
-          artist: []
-        }
-      }
-      await axios(config);
-    } catch (error) {
-      console.error('Error in addProfileToDB: ', error);
-    }
-  }
   
   render() {
     return (
