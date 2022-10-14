@@ -19,7 +19,6 @@ class CitySearchMap extends React.Component {
                             <Card.Img variant="top" src={this.props.cityMap} />
                         </Card.Body>
                     </Card> */}
-
             </>
         )
     }

@@ -65,9 +65,10 @@
   border-radius: 8px
 }
 
+
 .map-container {
   display: flex;
-
+  border-radius: 8px;
 }
 
 #map-image {
@@ -75,12 +76,14 @@
 }
 
 .venue-results {
+  border: 4px solid white;
+  background-color: black;
+  border-radius: 8px;
+  overflow-x: auto;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 192px;
-  overflow: auto;
-  overflow-x: scroll;
+  scrollbar-width: none;
+  max-height: 200px;
+
 }
 
 #venue-container {
@@ -100,19 +103,18 @@
 }
 
 div.card {
-  width: 500px;
-  margin: 20px;
-}
-
-div.card-body {
-  color:black;
+  min-width: 200px;
+  margin: 8px;
   text-align: center;
-}
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  
+
 
 #artist-results, #venue-header, #search-h2 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+
 }
 
 .searched-artists{
@@ -136,9 +138,8 @@ nav.navbar.navbar-expand.navbar-dark.bg-dark{
 
 main{
   background-image: url('https://live.staticflickr.com/4903/47382524831_0c9afa6fb6_b.jpg');
-
-
   background-size: 100%;
+  height: 2000px;
 }
 
 #shade{
