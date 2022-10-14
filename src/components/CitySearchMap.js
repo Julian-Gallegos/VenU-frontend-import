@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container';
 
 
 
@@ -8,8 +8,7 @@ class CitySearchMap extends React.Component {
     render() {
         return (
             <>
-                <Container>
-                    <img className="mx-auto" src={this.props.mapURL} alt="A map"></img>
+                    <img id="map-image" className="mx-auto" src={this.props.mapURL} alt="A map"></img>
                     {/* <Card className='my-4'>
                         <Card.Body>
                             <Card.Title>{this.props.location.display_name}</Card.Title>
@@ -20,8 +19,6 @@ class CitySearchMap extends React.Component {
                             <Card.Img variant="top" src={this.props.cityMap} />
                         </Card.Body>
                     </Card> */}
-                </Container>
-             
 
             </>
         )

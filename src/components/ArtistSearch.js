@@ -69,9 +69,9 @@ class ArtistSearch extends React.Component {
 				<Header handleFormSubmit={this.handleSubmit} handleFormChange={this.props.handleFormChange} searchQuery={this.props.searchQuery} redirectHandler={this.props.redirectHandler} />
 
 				<Container>
-					<h2> Venue Results </h2>
+					<h2 id='artist-results'> Artist Results </h2>
 					<Container>
-						<Row style={{margin: '50px'}}>
+						<Row>
 							{this.state.artists.map((artist, idx) => {
 								return (
 									<Col>
