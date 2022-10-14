@@ -43,8 +43,6 @@ class ArtistSearch extends React.Component {
 
 	getEvents = async () => {
 		const response = await axios.get(`${process.env.REACT_APP_VENUE_API}/events?performers.id=${this.state.clickedArtist.id}&client_id=${process.env.REACT_APP_VENUE_KEY}`);
-		console.log(this.state.clickedArtist.id);
-		console.log(response.data);
 		const eventsData = response.data.events.map(event => new Event(event));
 		this.setState({ events: eventsData }, console.log(eventsData));
   }
@@ -73,6 +71,7 @@ class ArtistSearch extends React.Component {
 								return (
 									<Col>
 									<ArtistCard
+										key={idx}
 										setShowModalTrue={this.setShowModalTrue}
 										name={artist.name}
 										address={artist.address}
